@@ -1,6 +1,11 @@
 const db = require('../../data/dbConfig');
 
-function getAll() {}
+function getAll(user_id) {
+  return db('users_targets')
+    .select('targets.*')
+    .join('targets', 'target_id', 'targets.id')
+    .where({user_id});
+}
 
 function getById() {}
 
