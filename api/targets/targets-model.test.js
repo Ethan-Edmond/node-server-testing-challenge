@@ -77,5 +77,9 @@ describe('remove', () => {
       { id: 3, name: 'Dominick', linkedIn_profile: 'dominick-linkedin'}
     ]);
   });
-  it.todo('responds with the deleted target');
+  it('responds with the deleted target', async () => {
+    const expected = {id: 2, name: 'Warren', linkedIn_profile: 'warren-linkedin'};
+    const actual = await Targets.remove(1,2);
+    expect(actual).toMatchObject(expected);
+  });
 });
