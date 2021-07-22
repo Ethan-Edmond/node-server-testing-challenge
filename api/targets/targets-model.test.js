@@ -49,7 +49,33 @@ describe('update', () => {
 });
 
 describe('remove', () => {
-  it.todo('deletes connection between user and target in users_targets table');
-  it.todo('deletes target from targets tableif target has no more connections');
+  it('deletes connection between user and target in users_targets table', async () => {
+    const before = await db('users_targets');
+    expect(before).toMatchObject([
+      {id: 1, user_id: 1, target_id: 1},
+      {id: 2, user_id: 1, target_id: 2},
+      {id: 3, user_id: 2, target_id: 3}
+    ]);
+    await Targets.remove(1,2);
+    const after = await db('users_targets');
+    expect(after).toMatchObject([
+      {id: 1, user_id: 1, target_id: 1},
+      {id: 3, user_id: 2, target_id: 3}
+    ]);
+  });
+  it('deletes target from targets table if target has no more connections', async () => {
+    const before = await db('targets');
+    expect(before).toMatchObject([
+      { id: 1, name: 'Gabe', linkedIn_profile: 'gabe-linkedin'},
+      { id: 2, name: 'Warren', linkedIn_profile: 'warren-linkedin'},
+      { id: 3, name: 'Dominick', linkedIn_profile: 'dominick-linkedin'}
+    ]);
+    await Targets.remove(1,2);
+    const after = await db('targets');
+    expect(after).toMatchObject([
+      { id: 1, name: 'Gabe', linkedIn_profile: 'gabe-linkedin'},
+      { id: 3, name: 'Dominick', linkedIn_profile: 'dominick-linkedin'}
+    ]);
+  });
   it.todo('responds with the deleted target');
 });

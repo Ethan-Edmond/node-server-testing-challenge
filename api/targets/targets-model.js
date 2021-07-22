@@ -19,7 +19,18 @@ function add () {}
 
 function update () {}
 
-function remove () {}
+async function remove (user_id, target_id) {
+  await db('users_targets')
+    .del()
+    .where({user_id, target_id});
+  try {
+    await db('targets')
+      .del()
+      .where({id: target_id});
+  } catch (err) {
+    console.log(err);
+  }
+}
 
 module.exports = {
   getAll,
