@@ -27,11 +27,12 @@ describe('[GET] /', () => {
 describe('/api/auth', () => {
 
   describe('[POST] /login', () => {
-    it('responds with 404 when username does not exist', async () => {
+    it('responds with 404 and correct message when username does not exist', async () => {
       const res = await request(server)
             .post('/api/auth/login')
             .send({ username: 'Ronald', password: '1234'});
       expect(res.status).toBe(404);
+      expect(res.body.message).toBe('Invalid Credentials');
     });
     it.todo('responds with 401 when password is invalid');
     it.todo('responds with 200 on good login');
