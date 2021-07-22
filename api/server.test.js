@@ -90,7 +90,20 @@ describe('/api/targets', () => {
 
   describe('[DELETE] /:id', () => {
     it.todo('is correctly restricted');
-    it.todo('deletes connection between user and target with given id');
+    it('deletes connection between user and target with given id', async () => {
+      const before = await db('users_targets');
+      expect(before).toMatchObject([
+        { id: 1, user_id: 1, target_id: 1 },
+        { id: 2, user_id: 1, target_id: 2 },
+        { id: 3, user_id: 2, target_id: 3}
+      ]);
+      await request(server).delete('/api/targets/1');
+      const after = await db('users_targets');
+      expect(after).toMatchObject([
+        { id: 2, user_id: 1, target_id: 2 },
+        { id: 3, user_id: 2, target_id: 3}
+      ]);
+    });
     it.todo('deletes target if target has no other connections');
     it.todo('responds with 200 on good request');
     it.todo('responds with deleted target');
