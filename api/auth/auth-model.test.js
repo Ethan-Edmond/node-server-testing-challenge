@@ -58,5 +58,16 @@ describe('add', () => {
     ]);
   });
 
-  it.todo('responds with the added user');
+  it('responds with the added user', async () => {
+    const expected = {
+      id: 4,
+      username: 'Bryan',
+      password: '1234'
+    };
+    const actual = await Users.add({
+      username: 'Bryan',
+      password: '1234'
+    });
+    expect(actual).toMatchObject(expected);
+  });
 });
