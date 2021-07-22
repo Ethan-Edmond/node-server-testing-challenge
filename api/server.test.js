@@ -27,7 +27,12 @@ describe('[GET] /', () => {
 describe('/api/auth', () => {
 
   describe('[POST] /login', () => {
-    it.todo('responds with 404 when username does not exist');
+    it('responds with 404 when username does not exist', async () => {
+      const res = await request(server)
+            .post('/api/auth/login')
+            .send({ username: 'Ronald', password: '1234'});
+      expect(res.status).toBe(404);
+    });
     it.todo('responds with 401 when password is invalid');
     it.todo('responds with 200 on good login');
     it.todo('Sets session in cookie on good login');
