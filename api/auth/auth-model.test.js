@@ -37,6 +37,14 @@ describe('getById', () => {
   });
 });
 
+describe('getByUsername', () => {
+  it('responds with the user with the given username', async () => {
+    const expected = {id: 1, username: 'Ethan', password: 'changeMe'};
+    const actual = await Users.getByUsername('Ethan');
+    expect(actual).toMatchObject(expected);
+  });
+});
+
 describe('add', () => {
   it('adds the supplied user to the users table', async () => {
     const before = await db('users');

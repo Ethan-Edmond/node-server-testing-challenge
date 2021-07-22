@@ -10,6 +10,9 @@ function getById(id) {
     .first();
 };
 
+function getByUsername() {
+}
+
 function add({username, password}) {
   return db('users').insert({username, password})
     .then(id => {
@@ -21,5 +24,6 @@ function add({username, password}) {
 module.exports = {
   getAll,
   getById,
+  getByUsername,
   add
 };

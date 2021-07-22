@@ -8,7 +8,9 @@ const targetsRouter = require('./targets/targets-router');
 server.use(express.json());
 
 server.use('/api/auth', authRouter);
+
 server.use('/api/targets', targetsRouter);
+
 server.get('/', (req, res, next) => {
   res.json('Hellooooo');
 });
