@@ -104,9 +104,30 @@ describe('/api/targets', () => {
         { id: 3, user_id: 2, target_id: 3}
       ]);
     });
-    it.todo('deletes target if target has no other connections');
-    it.todo('responds with 200 on good request');
-    it.todo('responds with deleted target');
+    it('deletes target if target has no other connections', async () => {
+      const before = await db('targets');
+      expect(before).toMatchObject([
+        { id: 1, name: 'Gabe', linkedIn_profile: 'gabe-linkedin' },
+        { id: 2, name: 'Warren', linkedIn_profile: 'warren-linkedin' },
+        { id: 3, name: 'Dominick', linkedIn_profile: 'dominick-linkedin'}
+      ]);
+      await request(server).delete('/api/targets/1');
+      const after = await db('targets');
+      expect(after).toMatchObject([
+        { id: 2, name: 'Warren', linkedIn_profile: 'warren-linkedin' },
+        { id: 3, name: 'Dominick', linkedIn_profile: 'dominick-linkedin'}
+      ]);
+    });
+    it('responds with 200 on good request', async () => {
+      const res = await request(server).delete('/api/targets/1');
+      expect(res.status).toBe(200);
+    });
+    it('responds with deleted target', async () => {
+      const res = await request(server).delete('/api/targets/1');
+      expect(res.body).toMatchObject({
+        id: 1, name: 'Gabe', linkedIn_profile: 'gabe-linkedin'
+      });
+    });
   });
 
 });
