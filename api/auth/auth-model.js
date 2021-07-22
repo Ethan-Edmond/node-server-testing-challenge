@@ -10,7 +10,9 @@ function getById(id) {
     .first();
 };
 
-function add() {};
+function add({username, password}) {
+  return db('users').insert({username, password});
+};
 
 
 module.exports = {
