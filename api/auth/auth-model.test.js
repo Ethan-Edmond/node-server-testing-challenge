@@ -30,7 +30,11 @@ describe('getAll', () => {
 });
 
 describe('getById', () => {
-  it.todo('responds with the user with given id');
+  it('responds with the user with given id', async () => {
+    const expected = {id: 1, username: 'Ethan', password: 'changeMe'};
+    const actual = await Users.getById(1);
+    expect(actual).toMatchObject(expected);
+  });
 });
 
 describe('add', () => {
