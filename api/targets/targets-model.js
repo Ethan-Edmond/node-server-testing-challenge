@@ -20,6 +20,9 @@ function add () {}
 function update () {}
 
 async function remove (user_id, target_id) {
+  const target = await db('targets')
+        .where('id', target_id)
+        .first();
   await db('users_targets')
     .del()
     .where({user_id, target_id});
@@ -30,6 +33,7 @@ async function remove (user_id, target_id) {
   } catch (err) {
     console.log(err);
   }
+  return target;
 }
 
 module.exports = {
