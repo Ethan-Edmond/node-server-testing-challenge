@@ -19,7 +19,14 @@ afterAll(async () => {
 });
 
 describe('getAll', () => {
-  it.todo('responds with all users');
+  it('responds with all users', async () => {
+    const expected = [
+      {id: 1, username: 'Ethan', password: 'changeMe'},
+      {id: 2, username: 'Mike', password: 'changeMe'},
+      {id: 3, username: 'Sri', password: 'changeMe'}
+    ];
+    expect(await Users.getAll()).toMatchObject(expected);
+  });
 });
 
 describe('getById', () => {
