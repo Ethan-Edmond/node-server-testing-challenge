@@ -4,7 +4,11 @@ function getAll() {
   return db('users');
 };
 
-function getById() {};
+function getById(id) {
+  return db('users')
+    .where({id})
+    .first();
+};
 
 function add() {};
 
