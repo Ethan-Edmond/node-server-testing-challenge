@@ -38,6 +38,25 @@ describe('getById', () => {
 });
 
 describe('add', () => {
-  it.todo('adds the supplied user to the users table');
+  it('adds the supplied user to the users table', async () => {
+    const before = await db('users');
+    expect(before).toMatchObject([
+      {id: 1, username: 'Ethan', password: 'changeMe'},
+      {id: 2, username: 'Mike', password: 'changeMe'},
+      {id: 3, username: 'Sri', password: 'changeMe'}
+    ]);
+    await Users.add({
+      username: 'Bryan',
+      password: '1234'
+    });
+    const after = await db('users');
+    expect(after).toMatchObject([
+      {id: 1, username: 'Ethan', password: 'changeMe'},
+      {id: 2, username: 'Mike', password: 'changeMe'},
+      {id: 3, username: 'Sri', password: 'changeMe'},
+      {id: 4, username: 'Bryan', password: '1234'}
+    ]);
+  });
+
   it.todo('responds with the added user');
 });
