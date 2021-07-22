@@ -4,6 +4,7 @@ exports.usernameExists = function (req, res, next) {
   Users.getByUsername(req.body.username)
     .then(user => {
       if (user) {
+        req.user = user;
         next();
       } else {
         next({
@@ -13,4 +14,8 @@ exports.usernameExists = function (req, res, next) {
       }
     })
     .catch(next);
+};
+
+exports.passwordValid = function (req, res, next) {
+  next();
 };

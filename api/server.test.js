@@ -34,8 +34,9 @@ describe('/api/auth', () => {
       expect(res.status).toBe(404);
       expect(res.body.message).toBe('Invalid Credentials');
     });
+    // save these for when you have hashed passwords in the database instead of plaintext
     it.todo('responds with 401 when password is invalid');
-    it.todo('responds with 200 on good login');
+    it('responds with 200 on good login');
     it.todo('Sets session in cookie on good login');
   });
 
@@ -59,7 +60,10 @@ describe('/api/targets', () => {
 
   describe('[GET] /', () => {
     it.todo('is correctly restricted');
-    it.todo('responds with 200 on good request');
+    it('responds with 200 on good request', async () => {
+      const res = await request(server).get('/api/targets');
+      expect(res.status).toBe(200);
+    });
     it.todo('responds with all targets related to user');
   });
 

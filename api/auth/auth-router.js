@@ -1,9 +1,10 @@
 const router = require('express').Router();
 const {
-  usernameExists
+  usernameExists,
+  passwordValid
 } = require('./middleware');
 
-router.post('/login', usernameExists, (req, res, next) => {
+router.post('/login', usernameExists, passwordValid, (req, res, next) => {
   res.json({message: 'y'})
 });
 
