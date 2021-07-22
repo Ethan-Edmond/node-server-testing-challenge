@@ -11,7 +11,10 @@ function getById(id) {
 };
 
 function add({username, password}) {
-  return db('users').insert({username, password});
+  return db('users').insert({username, password})
+    .then(id => {
+      return getById(id);
+    });
 };
 
 
