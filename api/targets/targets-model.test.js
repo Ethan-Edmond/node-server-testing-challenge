@@ -30,7 +30,11 @@ describe('getAll', () => {
 });
 
 describe('getById', () => {
-  it.todo('responds with the target with given id related to user');
+  it('responds with the target with given id related to user', async () => {
+    const expected = { id: 2, name: 'Warren', linkedIn_profile: 'warren-linkedin' };
+    const actual = await Targets.getById(1,2);
+    expect(actual).toMatchObject(expected);
+  });
 });
 
 describe('add', () => {
