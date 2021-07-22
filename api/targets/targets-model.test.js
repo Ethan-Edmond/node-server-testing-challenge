@@ -19,7 +19,14 @@ afterAll(async () => {
 });
 
 describe('getAll', () => {
-  it.todo('responds with all targets related to user');
+  it('responds with all targets related to user', async () => {
+    const expected = [
+      { id: 1, name: 'Gabe', linkedIn_profile: 'gabe-linkedin' },
+      { id: 2, name: 'Warren', linkedIn_profile: 'warren-linkedin' }
+    ];
+    const actual = await Targets.getAll(1);
+    expect(actual).toMatchObject(expected);
+  });
 });
 
 describe('getById', () => {
