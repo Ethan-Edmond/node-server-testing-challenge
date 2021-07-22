@@ -10,7 +10,10 @@ function getById(id) {
     .first();
 };
 
-function getByUsername() {
+function getByUsername(username) {
+  return db('users')
+    .where({username})
+    .first();
 }
 
 function add({username, password}) {
