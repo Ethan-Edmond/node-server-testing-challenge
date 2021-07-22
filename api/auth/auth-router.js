@@ -1,9 +1,10 @@
 const router = require('express').Router();
+const {
+  usernameExists
+} = require('./middleware');
 
-router.post('/login', (req, res, next) => {
-  next({
-    message: 'needs implementation'
-  });
+router.post('/login', usernameExists, (req, res, next) => {
+  res.json({message: 'y'})
 });
 
 module.exports = router;

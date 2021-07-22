@@ -1,7 +1,7 @@
 const Users = require('./auth-model');
 
-exports.usernameExists = function ({body: {username}}, res, next) {
-  User.getByUsername(username)
+exports.usernameExists = function (req, res, next) {
+  Users.getByUsername(req.body.username)
     .then(user => {
       if (user) {
         next();
