@@ -1,8 +1,13 @@
 const express = require('express');
 
+const outreachRouter = require('./outreach/router');
+
 const server = express();
 
+
+
 server.use(express.json());
+
 
 
 server.use((err, req, res, next) => {
