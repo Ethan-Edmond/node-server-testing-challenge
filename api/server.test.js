@@ -62,7 +62,15 @@ describe('[POST] /api/outreach', () => {
 });
 
 describe('[DELETE] /api/outreach/:id', () => {
-  it.todo('deletes from db');
+  it('deletes from db', async () => {
+    await request(server)
+      .delete('/api/outreach/2');
+    const after = await db('outreach');
+    expect(after).toMatchObject([
+      {id: 1, name: 'Gabe', linkedin: 'gabeslinkedin'},
+      {id: 3, name: 'Dominick', linkedin: 'dominickslinkedin'},
+    ]);
+  });
   it.todo('resolves to 200');
   it.todo('returns deleted outreach target');
 });
