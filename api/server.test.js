@@ -59,9 +59,11 @@ describe('[POST] /api/outreach', () => {
       linkedin: 'britslinkedin'
     });
   });
+
 });
 
 describe('[DELETE] /api/outreach/:id', () => {
+
   it('deletes from db', async () => {
     await request(server)
       .delete('/api/outreach/2');
@@ -71,6 +73,12 @@ describe('[DELETE] /api/outreach/:id', () => {
       {id: 3, name: 'Dominick', linkedin: 'dominickslinkedin'},
     ]);
   });
-  it.todo('resolves to 200');
+
+  it('resolves to 200', async () => {
+    const res = await request(server)
+          .delete('/api/outreach/2');
+    expect(res.status).toBe(200);
+  });
+
   it.todo('returns deleted outreach target');
 });
