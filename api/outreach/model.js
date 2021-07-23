@@ -10,8 +10,10 @@ function add (target) {
     });
 }
 
-function remove () {
-  
+function remove (id) {
+  return db('outreach')
+    .del()
+    .where({id});
 }
 
 module.exports = {
