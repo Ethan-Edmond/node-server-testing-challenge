@@ -32,4 +32,15 @@ describe('add', () => {
       {id: 4, name: 'Brit', linkedin: 'britslinkedin'}
     ]);
   });
+  it('returns the added outreach target', async () => {
+    const target = await Outreach.add({
+      name: 'Brit',
+      linkedin: 'britslinkedin'
+    });
+    expect(target).toMatchObject({
+      id: 4,
+      name: 'Brit',
+      linkedin: 'britslinkedin'
+    });
+  });
 });
