@@ -44,3 +44,14 @@ describe('add', () => {
     });
   });
 });
+
+describe('remove', () => {
+  it('removes outreach target from database', async () => {
+    await Outreach.remove(2);
+    const after = await db('outreach');
+    expect(after).toMatchObject([
+      {id: 1, name: 'Gabe', linkedin: 'gabeslinkedin'},
+      {id: 3, name: 'Dominick', linkedin: 'dominickslinkedin'}
+    ]);
+  });
+});
