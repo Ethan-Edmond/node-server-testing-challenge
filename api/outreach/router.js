@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const Outreach = require('./model');
 
 router.post('/', (req, res, next) => {
   next({
