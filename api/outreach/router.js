@@ -9,9 +9,10 @@ router.post('/', (req, res, next) => {
 });
 
 router.delete('/:id', (req, res, next) => {
-  next({
-    message: 'delete not implemented'
-  });
+  Outreach.remove(req.params.id)
+    .then(deleted => {
+      res.json({message: 'asdf'});
+    });
 });
 
 module.exports = router;
