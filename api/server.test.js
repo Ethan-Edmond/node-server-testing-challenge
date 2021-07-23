@@ -55,6 +55,7 @@ describe('[POST] /api/outreach', () => {
             linkedin: 'britslinkedin'
           });
     expect(res.body).toMatchObject({
+      id: 4,
       name: 'Brit',
       linkedin: 'britslinkedin'
     });
@@ -80,5 +81,13 @@ describe('[DELETE] /api/outreach/:id', () => {
     expect(res.status).toBe(200);
   });
 
-  it.todo('returns deleted outreach target');
+  it('returns deleted outreach target', async () => {
+    const res = await request(server)
+          .delete('/api/outreach/2');
+    expect(res.body).toMatchObject({
+      id: 2,
+      name: 'Warren',
+      linkedin: 'warrenslinkedin'
+    });
+  });
 });
