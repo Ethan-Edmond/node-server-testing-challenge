@@ -21,7 +21,7 @@ afterAll(async () => {
 
 describe('[POST] /api/outreach', () => {
   it('adds to db', async () => {
-    await request(server)
+    const res = await request(server)
       .post('/api/outreach')
       .send({
         name: 'Brit',

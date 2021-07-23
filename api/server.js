@@ -8,7 +8,7 @@ const server = express();
 
 server.use(express.json());
 
-
+server.use('/api/outreach', outreachRouter);
 
 server.use((err, req, res, next) => {
   const status = err.status || 500;

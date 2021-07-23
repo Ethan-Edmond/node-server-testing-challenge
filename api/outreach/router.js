@@ -2,9 +2,10 @@ const router = require('express').Router();
 const Outreach = require('./model');
 
 router.post('/', (req, res, next) => {
-  next({
-    message: 'post not implemented'
-  });
+  Outreach.add(req.body)
+    .then(added => {
+      res.status(201).json(added);
+    });
 });
 
 router.delete('/:id', (req, res, next) => {
