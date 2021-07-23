@@ -20,8 +20,9 @@ afterAll(async () => {
 });
 
 describe('[POST] /api/outreach', () => {
+
   it('adds to db', async () => {
-    const res = await request(server)
+    await request(server)
       .post('/api/outreach')
       .send({
         name: 'Brit',
@@ -35,7 +36,16 @@ describe('[POST] /api/outreach', () => {
       {id: 4, name: 'Brit', linkedin: 'britslinkedin'}
     ]);
   });
-  it.todo('resolves to 201');
+
+  it('resolves to 201', async () => {
+    const res = await request(server)
+          .post('/api/outreach')
+          .send({
+            name: 'Brit',
+            linkedin: 'britslinkedin'
+          });
+    expect(res.status).toBe(201);
+  });
   it.todo('returns added outreach target');
 });
 
