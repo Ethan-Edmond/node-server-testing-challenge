@@ -20,7 +20,21 @@ afterAll(async () => {
 });
 
 describe('[POST] /api/outreach', () => {
-  it.todo('adds to db');
+  it('adds to db', async () => {
+    await request(server)
+      .post('/api/outreach')
+      .send({
+        name: 'Brit',
+        linkedin: 'britslinkedin'
+      });
+    const after = await db('outreach');
+    expect(after).toMatchObject([
+      {id: 1, name: 'Gabe', linkedin: 'gabeslinkedin'},
+      {id: 2, name: 'Warren', linkedin: 'warrenslinkedin'},
+      {id: 3, name: 'Dominick', linkedin: 'dominickslinkedin'},
+      {id: 4, name: 'Brit', linkedin: 'britslinkedin'}
+    ]);
+  });
   it.todo('resolves to 201');
   it.todo('returns added outreach target');
 });
