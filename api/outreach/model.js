@@ -10,10 +10,14 @@ function add (target) {
     });
 }
 
-function remove (id) {
-  return db('outreach')
+async function remove (id) {
+  const deleted = await db('outreach')
+        .where({id})
+        .first();
+  await db('outreach')
     .del()
     .where({id});
+  return deleted;
 }
 
 module.exports = {
