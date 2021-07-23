@@ -33,11 +33,11 @@ describe('add', () => {
     ]);
   });
   it('returns the added outreach target', async () => {
-    const target = await Outreach.add({
+    const added = await Outreach.add({
       name: 'Brit',
       linkedin: 'britslinkedin'
     });
-    expect(target).toMatchObject({
+    expect(added).toMatchObject({
       id: 4,
       name: 'Brit',
       linkedin: 'britslinkedin'
@@ -53,5 +53,11 @@ describe('remove', () => {
       {id: 1, name: 'Gabe', linkedin: 'gabeslinkedin'},
       {id: 3, name: 'Dominick', linkedin: 'dominickslinkedin'}
     ]);
+  });
+  it('returns the deleted outreach target', async () => {
+    const deleted = await Outreach.remove(2);
+    expect(deleted).toMatchObject({
+      id: 2, name: 'Warren', linkedin: 'warrenslinkedin'
+    });
   });
 });
