@@ -5,9 +5,9 @@ function add (target) {
     .insert(target)
     .then(id => {
       return db('outreach')
-        .where({id});
+        .where({id})
+        .first();
     });
-  
 }
 
 function remove () {
