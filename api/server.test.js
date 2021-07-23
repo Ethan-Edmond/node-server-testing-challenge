@@ -46,7 +46,19 @@ describe('[POST] /api/outreach', () => {
           });
     expect(res.status).toBe(201);
   });
-  it.todo('returns added outreach target');
+
+  it('returns added outreach target', async () => {
+    const res = await request(server)
+          .post('/api/outreach')
+          .send({
+            name: 'Brit',
+            linkedin: 'britslinkedin'
+          });
+    expect(res.body).toMatchObject({
+      name: 'Brit',
+      linkedin: 'britslinkedin'
+    });
+  });
 });
 
 describe('[DELETE] /api/outreach/:id', () => {
